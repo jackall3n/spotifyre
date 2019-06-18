@@ -25,12 +25,12 @@ describe("Playlists", () => {
         access_token: 1
     });
 
-    test("should require a valid string query", async () => {
+    test("should handle a valid id", async () => {
         const playlistId = 'test';
 
         AxiosMock.onGet(`/playlists/${playlistId}`).reply(200, {});
 
-        const response = await request(router).get(`/api/v1/playlist?id=${playlistId}`);
+        const response = await request(router).get(`/api/v1/playlist/${playlistId}`);
 
         expect(response.status).toEqual(200);
     });
@@ -41,8 +41,8 @@ describe("Playlists", () => {
     });
 
     test("handle an empty id string", async () => {
-        const response = await request(router).get("/api/v1/playlist?id=");
-        expect(response.status).toEqual(400);
+        const response = await request(router).get("/api/v1/playlist/");
+        expect(response.status).toEqual(404);
     });
 
     test("should normalize the data", async () => {
@@ -65,7 +65,7 @@ describe("Playlists", () => {
             }
         });
 
-        const response = await request(router).get(`/api/v1/playlist?id=${id}`);
+        const response = await request(router).get(`/api/v1/playlist/${id}`);
 
         expect(response.body).toEqual({
             playlist: {
