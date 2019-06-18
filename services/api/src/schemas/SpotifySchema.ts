@@ -1,4 +1,4 @@
-import {normalize, schema} from 'normalizr';
+import {normalize, NormalizedSchema, schema} from 'normalizr';
 
 export const UserSchema = new schema.Entity('users', {}, {
     idAttribute: value => value.id || "unknown"
@@ -23,6 +23,6 @@ export const PlaylistSchema = new schema.Entity('playlists', {
     owner: UserSchema
 });
 
-export const normalizePlaylist = (data: any) => {
-    return normalize(data, PlaylistSchema);
+export const normalizePlaylist = (data: any): NormalizedSchema<any, any> => {
+    return normalize<any, any>(data, PlaylistSchema);
 };
