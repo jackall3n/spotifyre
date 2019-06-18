@@ -1,6 +1,5 @@
 import {Request, Response} from "express";
 import {getPlaylistById} from "../controllers/PlaylistController";
-import {checkIdParam} from "../../../middleware/check";
 
 export default [
     {

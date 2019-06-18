@@ -19,13 +19,13 @@ import {
     TrackTitle
 } from "./styled";
 import {NavigationConsumer} from "../../components/providers/navigation-provider";
+import {IPlaylist} from "@spotifyre/charis/models";
 
 export const Playlist: React.FunctionComponent = ({match}: any) => {
-    const [playlist, setPlaylist] = useState<any>();
+    const [playlist, setPlaylist] = useState<IPlaylist | undefined>();
     const [tracks, setTracks] = useState<any>();
     const [artists, setArtists] = useState<any>();
     const [ready, setReady] = useState<boolean>(false);
-
 
     useEffect(() => {
         const id = match.params.id;
@@ -49,7 +49,7 @@ export const Playlist: React.FunctionComponent = ({match}: any) => {
         )
     }, [match.params.id]);
 
-    if (!ready) {
+    if (!ready || !playlist) {
         return <div/>;
     }
 
@@ -75,7 +75,7 @@ export const Playlist: React.FunctionComponent = ({match}: any) => {
             </PlaylistHeader>
             <PlaylistMain>
                 <Tracks>
-                    {playlist.tracks.items.map((trackItem: any) => {
+                    {playlist.tracks.items.map(trackItem => {
                         const track = tracks[trackItem.track];
                         const trackArtists = track.artists.map((artist: string) => artists[artist]);
                         const artistsName = trackArtists.map((a: any) => a.name).join(', ');

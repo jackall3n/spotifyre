@@ -10,7 +10,6 @@ const SPOTIFY_ACCOUNTS_API_URL = `${SPOTIFY_ACCOUNTS_BASE_URL}/api`;
 
 const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
 const SPOTIFY_TRACKS_URL = `${SPOTIFY_API_BASE_URL}/tracks`;
-const SPOTIFY_PLAYLISTS_URL = `${SPOTIFY_API_BASE_URL}/playlists`;
 
 const REDIRECT_URI = `http://localhost:3000/api/v1/authorize`;
 

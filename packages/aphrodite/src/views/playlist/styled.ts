@@ -90,7 +90,7 @@ export const SecondaryButton = styled(Button)`
   background: rgba(0,0,0,0.4);
     border: 2px solid #ffffffa8;
   color: #2ba6d6;
-`
+`;
 
 export const FollowButton = styled(Button)`
 `;
