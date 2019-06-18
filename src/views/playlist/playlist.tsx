@@ -19,16 +19,16 @@ import {
     TrackTitle
 } from "./styled";
 import {NavigationConsumer} from "../../components/providers/navigation-provider";
-import {noop} from "@babel/types";
 
-export const Playlist: React.FunctionComponent = ({match, setLinks}: any) => {
+export const Playlist: React.FunctionComponent = ({match}: any) => {
     const [playlist, setPlaylist] = useState<any>();
     const [tracks, setTracks] = useState<any>();
     const [artists, setArtists] = useState<any>();
     const [ready, setReady] = useState<boolean>(false);
 
+
     useEffect(() => {
-        const {id} = match.params;
+        const id = match.params.id;
 
         if (!id) {
             return;
@@ -45,20 +45,9 @@ export const Playlist: React.FunctionComponent = ({match, setLinks}: any) => {
                 setTracks(playlist_data.tracks);
                 setArtists(playlist_data.users);
                 setReady(true);
-
-                if(!setLinks) {
-                    return
-                }
-                setLinks([{
-                    name: '27 / 02 / 2019'
-                },{
-                    name: '04 / 03 / 2019'
-                },{
-                    name: '11 / 03 / 2019'
-                }])
             }
         )
-    }, []);
+    }, [match.params.id]);
 
     if (!ready) {
         return <div/>;

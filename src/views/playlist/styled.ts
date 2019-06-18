@@ -8,7 +8,7 @@ export const PlaylistContainer = styled.div`
   background-image: linear-gradient(to right bottom, rgb(48, 46, 45), rgb(0, 0, 0)), linear-gradient(transparent, rgb(0, 0, 0) 70%);
    padding: 2rem;
    overflow: auto;
-   height: 100%;
+   height: 100vh;
 `;
 
 export const PlaylistBackground = styled<any>('div')`
