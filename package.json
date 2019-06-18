@@ -1,6 +1,9 @@
 {
   "name": "@spotifyre/root",
   "private": true,
+  "repository": "git@github.com:jackall3n/spotifyre.git",
+  "author": "Jack Allen <jackallensemail+bit@googlemail.com>",
+  "license": "MIT",
   "devDependencies": {
     "lerna": "^3.15.0"
   },

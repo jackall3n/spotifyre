@@ -14,8 +14,8 @@ const handleClientError = (router: Router) => {
 };
 
 const handleServerError = (router: Router) => {
-    router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-        ErrorHandler.serverError(err, res, next);
+    router.use((err: Error, req: Request, res: Response) => {
+        ErrorHandler.serverError(err, res);
     });
 };
 

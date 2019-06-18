@@ -2,11 +2,9 @@
   "name": "@spotifyre/aphrodite",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:jackall3n/spotifyre.git",
-  "author": "Jack Allen <jackallensemail+bit@googlemail.com>",
-  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
+    "start:dev": "yarn start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -21,6 +19,7 @@
     "typescript": "^3.5.1"
   },
   "dependencies": {
+    "@spotifyre/charis": "^1.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",

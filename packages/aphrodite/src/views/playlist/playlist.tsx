@@ -19,17 +19,21 @@ import {
     TrackTitle
 } from "./styled";
 import {NavigationConsumer} from "../../components/providers/navigation-provider";
-import {IPlaylist} from "@spotifyre/charis/models";
+import {IArtist, IPlaylist, ITrack, IUser} from "@spotifyre/charis/models";
+
+interface IPlaylistState {
+    playlist: IPlaylist;
+    tracks: { [key: string]: ITrack };
+    users: { [key: string]: IUser };
+    artists: { [key: string]: IArtist };
+}
 
 export const Playlist: React.FunctionComponent = ({match}: any) => {
-    const [playlist, setPlaylist] = useState<IPlaylist | undefined>();
-    const [tracks, setTracks] = useState<any>();
-    const [artists, setArtists] = useState<any>();
+    const { id } = match.params;
+    const [state, setState] = useState<IPlaylistState>();
     const [ready, setReady] = useState<boolean>(false);
 
     useEffect(() => {
-        const id = match.params.id;
-
         if (!id) {
             return;
         }
@@ -41,17 +45,17 @@ export const Playlist: React.FunctionComponent = ({match}: any) => {
                 }
 
                 const playlist_data = await response.json();
-                setPlaylist(playlist_data.playlist);
-                setTracks(playlist_data.tracks);
-                setArtists(playlist_data.users);
+                setState(playlist_data);
                 setReady(true);
             }
         )
-    }, [match.params.id]);
+    }, [id]);
 
-    if (!ready || !playlist) {
+    if (!ready || !state) {
         return <div/>;
     }
+
+    const {playlist, tracks, users, artists} = state;
 
     return (
         <PlaylistContainer>
@@ -65,7 +69,7 @@ export const Playlist: React.FunctionComponent = ({match}: any) => {
                 <PlaylistArtwork src={playlist.images[0].url}/>
                 <PlaylistOverview>
                     <PlaylistTitle>{playlist.name}</PlaylistTitle>
-                    <PlaylistOwner>By {artists[playlist.owner].display_name}</PlaylistOwner>
+                    <PlaylistOwner>By {users[playlist.owner].display_name}</PlaylistOwner>
                     <PlaylistDescription>{playlist.description}</PlaylistDescription>
                     <PlaylistControls>
                         <FollowButton>ADD</FollowButton>
