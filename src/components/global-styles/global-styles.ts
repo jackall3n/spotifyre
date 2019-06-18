@@ -1,7 +1,14 @@
 import {createGlobalStyle} from 'styled-components';
+import {normalize} from 'styled-normalize';
 import {theme} from "../theme";
 
 export const GlobalStyles = createGlobalStyle`
+  ${normalize}
+
+  * {
+    box-sizing: border-box;
+  }
+  
   html, body {
     margin: 0;
     font-family: proxima-nova, sans-serif;
@@ -13,27 +20,16 @@ export const GlobalStyles = createGlobalStyle`
    html, body, #app-container {
   }
   
-  * {
-    box-sizing: border-box;
-  }
-  
-  ::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: none; 
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: none; 
+    }
+    
+    ::-webkit-scrollbar-thumb {
       background: #888;
-    border-radius: 100px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-      // background: #f1f1f100;
-}
+      border-radius: 100px;
+    }
 `;
